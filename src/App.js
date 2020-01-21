@@ -1,29 +1,11 @@
 import React from 'react';
 import './App.css';
-import { Button} from 'react-bootstrap';
+import MyNavbar from './components/MyNavbar';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-      <style type="text/css">
-    {`
-    .btn-flat {
-      background-color: purple;
-      color: white;
-    }
-
-    .btn-xxl {
-      padding: 1rem 1.5rem;
-      font-size: 1.5rem;
-    }
-    `}
-  </style>
-
-  <Button variant="flat" size="xxl">
-    flat button
-  </Button>
-      </header>
+     <MyNavbar/>
     </div>
   );
 }
