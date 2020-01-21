@@ -14,7 +14,7 @@ function App() {
         <Switch>
           <Route path="/" component={Home} />           
           <Route path="/user" component={User} />         
-          <Route path="/random" component={Random} />          
+          <Route path="/random" component={ Random } />          
         </Switch>
       </Router>
     </div>
