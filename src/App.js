@@ -1,23 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Button} from 'react-bootstrap';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <style type="text/css">
+    {`
+    .btn-flat {
+      background-color: purple;
+      color: white;
+    }
+
+    .btn-xxl {
+      padding: 1rem 1.5rem;
+      font-size: 1.5rem;
+    }
+    `}
+  </style>
+
+  <Button variant="flat" size="xxl">
+    flat button
+  </Button>
       </header>
     </div>
   );
