@@ -1,12 +1,20 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
-import { Form, FormControl } from 'react-bootstrap'
+import { Form, Row, Col } from 'react-bootstrap'
 
 function User() {
     return (
-        <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-light">Search</Button>
+        <Form>
+            <Row>
+                <Col></Col>
+                <Form.Group>
+                    <Col>
+                        <Form.Control type="text" placeholder="Enter Keyword" />
+                        <Button variant="primary" type="submit">Search</Button>
+                    </Col>
+                </Form.Group>
+                <Col></Col>
+            </Row>
         </Form>
     )
 }

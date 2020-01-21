@@ -12,9 +12,9 @@ function App() {
       <Router>
         <MyNavbar />
         <Switch>
-          <Route path="/" component={Home} />           
-          <Route path="/user" component={User} />         
-          <Route path="/random" component={ Random } />          
+          <Route path="/" exact component={Home} />
+          <Route path="/user" exact component={User} />
+          <Route path="/random" exact component={Random} />
         </Switch>
       </Router>
     </div>

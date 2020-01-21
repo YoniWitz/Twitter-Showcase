@@ -7,9 +7,9 @@ function MyNavbar() {
         <Navbar bg="primary" variant="dark">
             <Navbar.Brand>Twitter Showcase</Navbar.Brand>
             <Nav className="mr-auto">
-                <Link as={Link} className="nav-link" to="/">Home</Link>
-                <Link as={Link} className="nav-link" to="/user">User Search</Link>
-                <Link as={Link} className="nav-link" to="/random">Random Tweet</Link>
+                <Nav.Link as={Link}  to="/">Home</Nav.Link>
+                <Nav.Link as={Link}  to="/user">User Search</Nav.Link>
+                <Nav.Link as={Link}  to="/random">Random Tweet</Nav.Link>
             </Nav>
         </Navbar>
     )

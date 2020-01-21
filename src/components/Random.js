@@ -1,7 +1,8 @@
 import React from 'react'
+import Card from './Card'
 
 function Random(){
-    return(<div>Random</div>)
+    return(<div><Card /></div>)
 }
 
 export default Random
