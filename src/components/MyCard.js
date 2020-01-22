@@ -1,48 +1,25 @@
 import React from 'react'
 import { Card, CardDeck } from 'react-bootstrap'
 
-function MyCard() {
+function MyCard(props) {
+  let title = props.data.title;
+  let text = props.data.text;
+  let small = props.data.small;
+  let src = props.data.src;
+
   return (
     <main>
       <CardDeck>
         <Card>
-          <Card.Img variant="top" src="pic1.gif" />
+          <Card.Img variant="top" src={src} alt="pic1.gif" />
           <Card.Body>
-            <Card.Title>Card title</Card.Title>
+             <Card.Title>{title}</Card.Title>
             <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in to
-              additional content. This content is a little bit longer.
-        </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        <Card>
-          <Card.Img variant="top" src="pic1.gif" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This card has supporting text below as a natural lead-in to additional
-          content.{' '}
+              {text}.
             </Card.Text>
           </Card.Body>
           <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        <Card>
-          <Card.Img variant="top" src="pic1.gif" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in to
-              additional content. This card has even longer content than the first to
-              show that equal height action.
-        </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
+            <small className="text-muted">{small}</small>
           </Card.Footer>
         </Card>
       </CardDeck>
