@@ -1,32 +1,60 @@
 let axios = require('axios');
 
+const instance = axios.create({
+    baseURL: "https://api.twitter.com/"
+})
+
 let getTweetsBySearch = (req, res) => {
     let q = req.params.search;
-    let url = 'https://api.twitter.com/1.1/search/tweets.json'
-    console.log(url);
-    axios.get(url, {
-        params: {
-            'q': q,
-            'result_type': 'popular',
-            'count': 5
+    let url = '1.1/search/tweets.json';
 
-        },
-        auth: {
-            'username': '1d0jI2olncfyjriTNBrch0cft',
-            'password': 'rNzLT17cGqO4yBhwissEiRWh4umdUMz8hSDY7ghV9O0Hm7LUbs'
-        },
-        headers: {
-            'Content_Type': "application/json",
-            'Accept': "application/json",
-            'Authorization': "Bearer AAAAAAAAAAAAAAAAAAAAAEJ1CAEAAAAAfoTX3CluX0CmrsFjDRdm9MsunQc%3DSwWc6bIaGPnB23QeDkOLL2Njr8OHMWlSE81TOyhX5JV7a30tcH"
-        }
-    })
-        .then(response =>{
+    instance.get(url,
+        {
+            params: {
+                'q': q,
+                'result_type': 'popular',
+                'count': 5
+            },
+            headers: {
+                'Content_Type': "application/json",
+                'Accept': "application/json",
+                'Authorization': "Bearer AAAAAAAAAAAAAAAAAAAAAEJ1CAEAAAAAfoTX3CluX0CmrsFjDRdm9MsunQc%3DSwWc6bIaGPnB23QeDkOLL2Njr8OHMWlSE81TOyhX5JV7a30tcH"
+            }
+        })
+        .then(response => {
             res.send(response.data)
         })
-        .catch(error =>{
-            res.status(500).send(error)
+        .catch(error => {
+            res.send(error.message)
         });
 }
 
-exports.getTweetsBySearch = getTweetsBySearch;
+let getBearerByCredentials = (req, res) => {
+    let url = 'oauth2/token';
+
+    instance.post(url,
+        {
+            data: {
+                'grant_type': "client_credentials"
+            },
+            headers: {
+                'Content_Type': "application/json",
+                'Accept': "application/json"
+            },
+            auth: {
+                Username: '1d0jI2olncfyjriTNBrch0cft',
+                Password: 'rNzLT17cGqO4yBhwissEiRWh4umdUMz8hSDY7ghV9O0Hm7LUbs'
+            },
+        })
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error.message)
+        });
+}
+
+module.exports = {
+    getBearerByCredentials: getBearerByCredentials,
+    getTweetsBySearch: getTweetsBySearch
+}
