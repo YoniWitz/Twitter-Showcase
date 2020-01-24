@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
     res.send('welcome to my show')
 })
 
-app.get('/api/tweets/search/:search', TwitterController.getTweetsBySearch)
+app.get('/api/tweets/search/:search', TwitterController.getBearerByCredentials)
 
 listenFunction = () => {
     console.log('up and running');

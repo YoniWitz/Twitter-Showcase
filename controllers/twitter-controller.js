@@ -15,6 +15,10 @@ let getTweetsBySearch = (req, res) => {
                 'result_type': 'popular',
                 'count': 5
             },
+            auth: {
+                Username: '1d0jI2olncfyjriTNBrch0cft',
+                Password: 'rNzLT17cGqO4yBhwissEiRWh4umdUMz8hSDY7ghV9O0Hm7LUbs'
+            },
             headers: {
                 'Content_Type': "application/json",
                 'Accept': "application/json",
@@ -30,8 +34,7 @@ let getTweetsBySearch = (req, res) => {
                     text: tweet['text']
                 }
                 returnedTweets.push(returnedTweet)
-            })
-           
+            })         
             res.send(returnedTweets)
         })
         .catch(error => {
@@ -41,27 +44,41 @@ let getTweetsBySearch = (req, res) => {
 
 let getBearerByCredentials = (req, res) => {
     let url = 'oauth2/token';
+    axios.request({
+        url: url,
+        method: "post",
+        baseURL: "https://api.twitter.com/",      
+        auth: {
+            username: '1d0jI2olncfyjriTNBrch0cft',
+            password: 'rNzLT17cGqO4yBhwissEiRWh4umdUMz8hSDY7ghV9O0Hm7LUbs'
+        },
+      }).then(respose => {
+        console.log(respose);  
+      })
+      .catch(error => 
+        console.log(error)); 
 
-    instance.post(url,
-        {
-            data: {
-                'grant_type': "client_credentials"
-            },
-            headers: {
-                'Content_Type': "application/json",
-                'Accept': "application/json"
-            },
-            auth: {
-                Username: '1d0jI2olncfyjriTNBrch0cft',
-                Password: 'rNzLT17cGqO4yBhwissEiRWh4umdUMz8hSDY7ghV9O0Hm7LUbs'
-            },
-        })
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error.message)
-        });
+    // instance.post(url,
+    //     {
+    //         data: {
+    //             'grant_type': "client_credentials"
+    //         },
+            
+    //         auth: {
+    //             username: '1d0jI2olncfyjriTNBrch0cft',
+    //             password: 'rNzLT17cGqO4yBhwissEiRWh4umdUMz8hSDY7ghV9O0Hm7LUbs'
+    //         },
+    //         headers: {
+    //             'Content_Type': "application/json",
+    //             'Accept': "application/json"
+    //         },
+    //     })
+    //     .then(response => {
+    //         console.log(response)
+    //     })
+    //     .catch(error => {
+    //         console.log(error.message)
+    //     });
 }
 
 module.exports = {
