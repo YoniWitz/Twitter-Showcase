@@ -21,8 +21,18 @@ let getTweetsBySearch = (req, res) => {
                 'Authorization': "Bearer AAAAAAAAAAAAAAAAAAAAAEJ1CAEAAAAAfoTX3CluX0CmrsFjDRdm9MsunQc%3DSwWc6bIaGPnB23QeDkOLL2Njr8OHMWlSE81TOyhX5JV7a30tcH"
             }
         })
-        .then(response => {
-            res.send(response.data)
+        .then(response => {   
+            let returnedTweets = [] 
+             response.data.statuses.forEach(tweet =>{
+                returnedTweet = {
+                    created_at: tweet['created_at'],
+                    id:tweet['id'],
+                    text: tweet['text']
+                }
+                returnedTweets.push(returnedTweet)
+            })
+           
+            res.send(returnedTweets)
         })
         .catch(error => {
             res.send(error.message)
