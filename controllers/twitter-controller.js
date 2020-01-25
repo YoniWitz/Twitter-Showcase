@@ -47,7 +47,7 @@ let getTweetsBySearch = (req, res) => {
         });
 }
 
-let getBearerByCredentials = (req, res) => {
+let getBearerByCredentials = () => {
     let url = 'oauth2/token';
     axios.request({
         url: url,
