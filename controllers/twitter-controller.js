@@ -10,6 +10,7 @@ const instance = axios.create({
 })
 
 let getTweetsBySearch = (req, res) => {
+    console.log('search for tweets')
     let q = req.params.search;
     let url = '1.1/search/tweets.json';
 
@@ -19,10 +20,6 @@ let getTweetsBySearch = (req, res) => {
                 'q': q,
                 'result_type': 'popular',
                 'count': 5
-            },
-            auth: {
-                Username: '1d0jI2olncfyjriTNBrch0cft',
-                Password: 'rNzLT17cGqO4yBhwissEiRWh4umdUMz8hSDY7ghV9O0Hm7LUbs'
             },
             headers: {
                 'Content_Type': "application/json",

@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap'
 import MyCard from './MyCard'
 import axios from 'axios'
 
 function User() {
-    const [cards, setCards] = useState([{ id: 2, title: "title1", text: "text1", small: "small1", src: "pic1.gif" }])
+    const [cards, setCards] = useState([])
     const [search, setSearch] = useState("");
 
     async function handleSubmit(event) {
         event.preventDefault();
         console.log(search);
-       axios.get('http://localhost:3001')     
+       axios.get(`http://localhost:3001/api/tweets/search/${search}`)     
             .then(response =>
-                console.log(response.data)
+                setCards(response.data)
             )
             .catch(error =>
                 console.log(error.message)
@@ -24,27 +24,27 @@ function User() {
         setSearch(value);
         console.log(search);
     }
-    useEffect(() => {
-        let newElement = {
-            id: 1,
-            title: "title",
-            text: "text",
-            small: "small"
-        }
-        setCards(prevCards => [...prevCards, newElement])
-    }, [])
+    // useEffect(() => {
+    //     let newElement = {
+    //         id: 1,
+    //         title: "title",
+    //         text: "text",
+    //         small: "small"
+    //     }
+    //     setCards(prevCards => [...prevCards, newElement])
+    // }, [])
 
     let renderCards = cards.map(data => <MyCard key={data.id} data={data} />);
-
+    let isEnabled = search.length 
     return (
         <main>
-            <Form>
+            <Form  onSubmit={handleSubmit}>
                 <Row>
                     <Col></Col>
                     <Form.Group>
                         <Col>
                             <Form.Control onChange={handleChange} value={search} type="text" placeholder="Enter Keyword" />
-                            <Button onClick={handleSubmit} variant="primary" >Search</Button>
+                            <Button type="submit" disabled={!isEnabled} variant="primary">Search</Button>
                         </Col>
                     </Form.Group>
                     <Col></Col>
