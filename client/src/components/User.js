@@ -10,7 +10,7 @@ function User() {
     async function handleSubmit(event) {
         event.preventDefault();
         console.log(search);
-       axios.get(`http://localhost:3001/api/tweets/search/${search}`)     
+        axios.get(`http://localhost:3001/api/tweets/search/${search}`)
             .then(response =>
                 setCards(response.data)
             )
@@ -35,10 +35,10 @@ function User() {
     // }, [])
 
     let renderCards = cards.map(data => <MyCard key={data.id} data={data} />);
-    let isEnabled = search.length 
+    let isEnabled = search.length
     return (
         <main>
-            <Form  onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <Row>
                     <Col></Col>
                     <Form.Group>
