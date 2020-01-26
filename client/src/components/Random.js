@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import MyCard from './MyCard'
+import axios from 'axios'
 
-function Random() {
-    const [cards, setCards] = useState([{id:2, title:"title1", text:"text1", small:"small1", src: "pic1.gif"}])
+function User() {
+    const [cards, setCards] = useState([])
 
     useEffect(() => {
-        let newElement = {
-            id:1,
-            title: "title",
-            text: "text",
-            small: "small"
-        }
-        setCards(prevCards => [...prevCards, newElement])
+        axios.get(`http://localhost:3001/api/tweets/search/random`)
+            .then(response =>
+                setCards(response.data)
+            )
+            .catch(error =>
+                console.log(error.message)
+            )
     }, [])
-    
-    let renderCards = cards.map(data => <MyCard key={data.id} data={data} /> );
+
+    let renderCards = cards.map(data => <MyCard key={data.id} data={data} />);
+
     return (
-        <main>{renderCards}</main>
+        <main>
+            {renderCards}
+        </main>
     )
 }
 
-export default Random
+export default User

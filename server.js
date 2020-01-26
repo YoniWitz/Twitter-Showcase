@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/tweets/search/:search', TwitterController.getTweetsBySearch)
+app.get('/api/tweets/search/random', TwitterController.getTweetsByRandomSearch)
 
 listenFunction = () => {
     console.log('up and running');

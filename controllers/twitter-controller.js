@@ -5,6 +5,8 @@ const data = qs.stringify({
   grant_type: 'client_credentials'
 })
 
+let bearer;
+
 const instance = axios.create({
     baseURL: "https://api.twitter.com/"
 })
@@ -24,7 +26,42 @@ let getTweetsBySearch = (req, res) => {
             headers: {
                 'Content_Type': "application/json",
                 'Accept': "application/json",
-                'Authorization': "Bearer AAAAAAAAAAAAAAAAAAAAAEJ1CAEAAAAAfoTX3CluX0CmrsFjDRdm9MsunQc%3DSwWc6bIaGPnB23QeDkOLL2Njr8OHMWlSE81TOyhX5JV7a30tcH"
+                'Authorization': `Bearer ${bearer}`
+            }
+        })
+        .then(response => {   
+            let returnedTweets = [] 
+             response.data.statuses.forEach(tweet =>{
+                returnedTweet = {
+                    created_at: tweet['created_at'],
+                    id:tweet['id'],
+                    text: tweet['text']
+                }
+                returnedTweets.push(returnedTweet)
+            })         
+            res.send(returnedTweets)
+        })
+        .catch(error => {
+            res.send(error.message)
+        });
+}
+
+let getTweetsByRandomSearch = (req, res) => {
+    console.log('search for tweets')
+    let q = "trump";
+    let url = '1.1/search/tweets.json';
+
+    instance.get(url,
+        {
+            params: {
+                'q': q,
+                'result_type': 'popular',
+                'count': 5
+            },
+            headers: {
+                'Content_Type': "application/json",
+                'Accept': "application/json",
+                'Authorization': `Bearer ${bearer}`
             }
         })
         .then(response => {   
@@ -55,8 +92,8 @@ let getBearerByCredentials = () => {
             username: '1d0jI2olncfyjriTNBrch0cft',
             password: 'rNzLT17cGqO4yBhwissEiRWh4umdUMz8hSDY7ghV9O0Hm7LUbs'
         },
-      }).then(respose => {
-        console.log(respose);  
+      }).then(response => {
+        bearer = response.data['access_token'];
       })
       .catch(error => 
         console.log(error)); 
@@ -64,5 +101,6 @@ let getBearerByCredentials = () => {
 
 module.exports = {
     getBearerByCredentials: getBearerByCredentials,
-    getTweetsBySearch: getTweetsBySearch
+    getTweetsBySearch: getTweetsBySearch,
+    getTweetsByRandomSearch: getTweetsByRandomSearch
 }
