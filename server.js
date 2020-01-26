@@ -1,6 +1,12 @@
-let express = require('express');
-let app = express();
-let port = 3001;
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const port = 3001;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 let TwitterController = require('./controllers/twitter-controller')
 
