@@ -24,15 +24,6 @@ function User() {
         setSearch(value);
         console.log(search);
     }
-    // useEffect(() => {
-    //     let newElement = {
-    //         id: 1,
-    //         title: "title",
-    //         text: "text",
-    //         small: "small"
-    //     }
-    //     setCards(prevCards => [...prevCards, newElement])
-    // }, [])
 
     let renderCards = cards.map(data => <MyCard key={data.id} data={data} />);
     let isEnabled = search.length

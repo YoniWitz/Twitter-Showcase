@@ -4,8 +4,8 @@ import { Card, CardDeck } from 'react-bootstrap'
 function MyCard(props) {
   let title = props.data.title;
   let text = props.data.text;
-  let small = props.data.small;
-  let src = props.data.src;
+  let date = props.data.created_at;
+  let src = props.data.image;
 
   return (
     <main>
@@ -19,7 +19,7 @@ function MyCard(props) {
             </Card.Text>
           </Card.Body>
           <Card.Footer>
-            <small className="text-muted">{small}</small>
+            <small className="text-muted">{date}</small>
           </Card.Footer>
         </Card>
       </CardDeck>
