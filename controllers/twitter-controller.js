@@ -1,9 +1,9 @@
 let axios = require('axios');
 var qs = require('qs');
-var moment = require ('moment')
+var moment = require('moment')
 
 const data = qs.stringify({
-  grant_type: 'client_credentials'
+    grant_type: 'client_credentials'
 })
 
 let bearer;
@@ -15,6 +15,19 @@ const instance = axios.create({
 let getTweetsBySearch = (req, res) => {
     console.log('search for tweets')
     let q = req.params.search;
+    twitterSearchApi(q, res);
+}
+
+let getTweetsByRandomSearch = (req, res) => {
+   
+
+    let people = ['Elon Musk', 'Neil Armstrong', 'Elizabeth Warren', 'Tom Hanks', 'Drake']
+    let q = people[Math.floor(Math.random()*people.length)];
+    console.log(q);
+    twitterSearchApi(q, res);
+}
+
+let twitterSearchApi = (q, res) => {
     let url = '1.1/search/tweets.json';
 
     instance.get(url,
@@ -30,52 +43,17 @@ let getTweetsBySearch = (req, res) => {
                 'Authorization': `Bearer ${bearer}`
             }
         })
-        .then(response => {   
-            let returnedTweets = [] 
-             response.data.statuses.forEach(tweet =>{
+        .then(response => {
+            let returnedTweets = []
+            response.data.statuses.forEach(tweet => {
                 returnedTweet = {
                     created_at: moment(tweet['created_at'], 'ddd MMM DD HH:mm:ss Z YYYY').format('MMM DD YYYY HH:MM'),
-                    id:tweet['id'],
+                    id: tweet['id'],
                     text: tweet['text'].substring(0, tweet['text'].lastIndexOf(" ")),
                     image: tweet['user']['profile_image_url']
                 }
                 returnedTweets.push(returnedTweet)
-            })         
-            res.send(returnedTweets)
-        })
-        .catch(error => {
-            res.send(error.message)
-        });
-}
-
-let getTweetsByRandomSearch = (req, res) => {
-    console.log('search for tweets')
-    let q = "trump";
-    let url = '1.1/search/tweets.json';
-
-    instance.get(url,
-        {
-            params: {
-                'q': q,
-                'result_type': 'popular',
-                'count': 5
-            },
-            headers: {
-                'Content_Type': "application/json",
-                'Accept': "application/json",
-                'Authorization': `Bearer ${bearer}`
-            }
-        })
-        .then(response => {   
-            let returnedTweets = [] 
-             response.data.statuses.forEach(tweet =>{
-                returnedTweet = {
-                    created_at: tweet['created_at'],
-                    id:tweet['id'],
-                    text: tweet['text']
-                }
-                returnedTweets.push(returnedTweet)
-            })         
+            })
             res.send(returnedTweets)
         })
         .catch(error => {
@@ -88,17 +66,18 @@ let getBearerByCredentials = () => {
     axios.request({
         url: url,
         method: "post",
-        baseURL: "https://api.twitter.com/",  
-        data,    
+        baseURL: "https://api.twitter.com/",
+        data,
         auth: {
             username: '1d0jI2olncfyjriTNBrch0cft',
             password: 'rNzLT17cGqO4yBhwissEiRWh4umdUMz8hSDY7ghV9O0Hm7LUbs'
         },
-      }).then(response => {
-        bearer = response.data['access_token'];
-      })
-      .catch(error => 
-        console.log(error)); 
+    })
+        .then(response => {
+            bearer = response.data['access_token'];
+        })
+        .catch(error =>
+            console.log(error));
 }
 
 module.exports = {

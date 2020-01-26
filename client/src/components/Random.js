@@ -6,7 +6,7 @@ function User() {
     const [cards, setCards] = useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/api/tweets/search/random`)
+        axios.get(`http://localhost:3001/api/tweets/random`)
             .then(response =>
                 setCards(response.data)
             )
