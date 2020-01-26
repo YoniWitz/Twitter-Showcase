@@ -19,8 +19,6 @@ let getTweetsBySearch = (req, res) => {
 }
 
 let getTweetsByRandomSearch = (req, res) => {
-   
-
     let people = ['Elon Musk', 'Neil Armstrong', 'Elizabeth Warren', 'Tom Hanks', 'Drake']
     let q = people[Math.floor(Math.random()*people.length)];
     console.log(q);
@@ -50,7 +48,11 @@ let twitterSearchApi = (q, res) => {
                     created_at: moment(tweet['created_at'], 'ddd MMM DD HH:mm:ss Z YYYY').format('MMM DD YYYY HH:MM'),
                     id: tweet['id'],
                     text: tweet['text'].substring(0, tweet['text'].lastIndexOf(" ")),
-                    image: tweet['user']['profile_image_url']
+                    image: tweet['user']['profile_image_url'],
+                    name: tweet['user']['name'],
+                    screen_name: tweet['user']['screen_name'],
+                    retweet_count: tweet["retweet_count"],
+                    favorite_count: tweet["favorite_count"]
                 }
                 returnedTweets.push(returnedTweet)
             })

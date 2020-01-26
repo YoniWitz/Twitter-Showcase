@@ -11,7 +11,7 @@ Allows user to search for Twitter tweets. Written in Node, Express, React.js and
 
 I began participating in a 'Software Development Mastermind' mentorship program towards the end of 2019. The purpose of the program is to strengthen and expand my skills as a Full Stack developer. The completed work is showcased on my GitHub and portfolio/personal website.
 
-This Twitter Showcase app is the forth project of the series. Here I learned to use Node and Express to build RESTful APIs. 
+This Twitter Showcase app is the forth project of the series. Here I learned to use Node, Express and React to display tweets using RESTful APIs. 
 
 My ultimate goal is to land a job that incorporates my skills and utilizes my abilities and outgoing personality. So if you enjoyed reviewing my code as much as I did writing it, please find me on one of the links provided below.
 
