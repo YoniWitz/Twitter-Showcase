@@ -1,5 +1,6 @@
 let axios = require('axios');
 var qs = require('qs');
+var moment = require ('moment')
 
 const data = qs.stringify({
   grant_type: 'client_credentials'
@@ -33,9 +34,10 @@ let getTweetsBySearch = (req, res) => {
             let returnedTweets = [] 
              response.data.statuses.forEach(tweet =>{
                 returnedTweet = {
-                    created_at: tweet['created_at'],
+                    created_at: moment(tweet['created_at'], 'ddd MMM DD HH:mm:ss Z YYYY').format('MMM DD YYYY HH:MM'),
                     id:tweet['id'],
-                    text: tweet['text']
+                    text: tweet['text'].substring(0, tweet['text'].lastIndexOf(" ")),
+                    image: tweet['user']['profile_image_url']
                 }
                 returnedTweets.push(returnedTweet)
             })         
