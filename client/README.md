@@ -1,10 +1,10 @@
 # Twitter Showcase
 
-Allows user to search for Twitter tweets. Written in Node, Express, React.js and deployed to Heroku
+Allows user to search for Twitter tweets without being logged on to twitter. Written in Node, Express, React.js and deployed to Heroku
 
 ## You can use it [here](http://yw-twitter-showcase-react.herokuapp.com/)
 
-<image src="src/assets/twitter_showcase_snapshot.bmp">
+<image src="src/assets/twitter_showcase_snapshot.png">
 
 ## Summary
 1.25.20
@@ -18,7 +18,8 @@ My ultimate goal is to land a job that incorporates my skills and utilizes my ab
 ##  Installation Instructions
 
 1. Download Repository
-
+2. From root folder, 'cd client', then 'npm install'
+3. From root folder, 'npm install' then 'npm run dev'
 4. Enjoy!
 
 ## Author
