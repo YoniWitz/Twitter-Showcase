@@ -8,19 +8,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use(express.static(__dirname + "/dist"));
-app.get(/.*/, function(req, res){
-    res.sendfile(__dirname+"/dist/index.html");
-});
-
 let TwitterController = require('./controllers/twitter-controller')
-
-app.get('/', (req, res) => {
-    res.send('welcome to my show')
-})
 
 app.get('/api/tweets/search/:search', TwitterController.getTweetsBySearch)
 app.get('/api/tweets/random', TwitterController.getTweetsByRandomSearch)
+
+//if we are in production
+if (process.env.NODE_ENV === 'production') {
+    //set static folder
+    app.use(express.static(__dirname + "client/build"));
+
+    app.get(/.*/, function (req, res) {
+        res.sendfile(path.resolve(__dirname + 'client', 'build', 'index.html'));
+    });
+}
 
 listenFunction = () => {
     console.log('up and running');
