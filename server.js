@@ -21,7 +21,6 @@ app.get(/.*/, function (req, res) {
     res.sendfile(path.resolve(__dirname + 'client', 'build', 'index.html'));
 });
 
-
 listenFunction = () => {
     console.log(`up and running on port ${port}`);
     TwitterController.getBearerByCredentials();
