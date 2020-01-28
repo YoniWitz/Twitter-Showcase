@@ -11,7 +11,7 @@ function User() {
     async function handleSubmit(event) {
         event.preventDefault();
         console.log(search);
-        axios.get(`http://localhost:3001/api/tweets/search/${search}`)
+        axios.get(`/api/tweets/search/${search}`)
             .then(response =>
                 setCards(response.data)
             )
