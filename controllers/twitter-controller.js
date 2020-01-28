@@ -20,7 +20,7 @@ let getTweetsBySearch = (req, res) => {
 
 let getTweetsByRandomSearch = (req, res) => {
     let people = ['Elon Musk', 'Neil Armstrong', 'Elizabeth Warren', 'Tom Hanks', 'Drake']
-    let q = people[Math.floor(Math.random()*people.length)];
+    let q = people[Math.floor(Math.random() * people.length)];
     console.log(q);
     twitterSearchApi(q, res);
 }

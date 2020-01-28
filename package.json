@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "full stack app",
   "main": "server.js",
-  "scripts": {
-    "start": "nodemon server.js",
+  "scripts": {    
+    "startServerDev":"nodemon server.js",
     "client": "cd client && yarn start",
-    "dev": "concurrently --kill-others-on-fail \"npm run start\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"npm run startServerDev\" \"yarn client\"",
+    "start": "node server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -26,13 +28,12 @@
     "express": "^4.17.1",
     "mdbreact": "^4.25.0",
     "moment": "^2.24.0",
+    "nodemon": "^2.0.2",
     "qs": "^6.9.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-icons": "^3.8.0",
     "reactstrap": "^8.4.0"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.2"
-  }
+  "devDependencies": {}
 }
