@@ -18,7 +18,7 @@ function User() {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        axios.get(`http://localhost:3001/api/tweets/random`)
+        axios.get(`/api/tweets/random`)
             .then(response =>
                 setCards(response.data)
             )
