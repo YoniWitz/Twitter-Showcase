@@ -18,7 +18,7 @@ app.get('/api/tweets/random', TwitterController.getTweetsByRandomSearch)
 app.use(express.static(__dirname + "/client/build"));
 
 app.get(/.*/, function (req, res) {
-    res.sendfile(path.resolve(__dirname + 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname + '/client', 'build', 'index.html'));
 });
 
 listenFunction = () => {
