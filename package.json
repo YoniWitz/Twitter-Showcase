@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {    
     "serve":"nodemon server",
-    "start:dev": "concurrently --kill-others-on-fail \"npm run serve\" \"cd client && yarn build\"",
+    "start:dev": "concurrently \"npm run serve\" \"cd client && yarn build\"",
     "start": "node server.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
