@@ -19,7 +19,7 @@ My ultimate goal is to land a job that incorporates my skills and utilizes my ab
 
 1. Download Repository
 2. From root folder, 'cd client', then 'npm install'
-3. From root folder, 'npm install' then 'npm run start:dev:server'
+3. From root folder, 'npm install' then 'npm run start:dev'
 4. in browser, redirect to http://localhost:3001/
 
 ## Author
