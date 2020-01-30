@@ -2,7 +2,7 @@
 
 Allows user to search for Twitter tweets without being logged on to twitter. Written in Node, Express, React.js and deployed to Heroku
 
-## You can use it [here](http://yw-twitter-showcase-react.herokuapp.com/)
+## You can use it [here](http://yw-twitter-showcase.herokuapp.com/)
 
 <image src="client/src/assets/twitter_showcase_snapshot.png">
 
