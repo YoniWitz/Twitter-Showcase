@@ -30,7 +30,6 @@ function User() {
     let isEnabled = search.length
     return (
         <main>
-
             <Row>
                 <Col></Col>
                 <Col>

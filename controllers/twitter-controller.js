@@ -1,6 +1,7 @@
 let axios = require('axios');
 var qs = require('qs');
-var moment = require('moment')
+var moment = require('moment');
+require('dotenv').config();
 
 const data = qs.stringify({
     grant_type: 'client_credentials'
@@ -71,8 +72,8 @@ let getBearerByCredentials = () => {
         baseURL: "https://api.twitter.com/",
         data,
         auth: {
-            username: '1d0jI2olncfyjriTNBrch0cft',
-            password: 'rNzLT17cGqO4yBhwissEiRWh4umdUMz8hSDY7ghV9O0Hm7LUbs'
+            username: process.env.API_TWITTER_USERNAME,
+            password: process.env.API_TWITTER_PASSWORD
         },
     })
         .then(response => {
