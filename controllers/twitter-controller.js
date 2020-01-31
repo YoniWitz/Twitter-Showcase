@@ -72,8 +72,8 @@ let getBearerByCredentials = () => {
         baseURL: "https://api.twitter.com/",
         data,
         auth: {
-            username: process.env.API_TWITTER_USERNAME,
-            password: process.env.API_TWITTER_PASSWORD
+            username: process.env.API_TWITTER_CONSUMER_KEY,
+            password: process.env.API_TWITTER_SECRET
         },
     })
         .then(response => {
