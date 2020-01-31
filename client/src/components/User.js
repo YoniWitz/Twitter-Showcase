@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form, Row, Col } from 'react-bootstrap'
+import { Button, Row, Col } from 'react-bootstrap'
 import MyCard from './MyCard'
 import axios from 'axios'
 
@@ -30,20 +30,25 @@ function User() {
     let isEnabled = search.length
     return (
         <main>
-            <Form onSubmit={handleSubmit}style={{marginTop:"10px"}}>
-                <Row>
-                    <Col></Col>
-                    <Form.Group>
-                        <Col style={{backgroundColor:"white"}}>
-                            <Form.Control onChange={handleChange} value={search} type="text" placeholder="Enter Keyword To Search on Twitter" />
-                            <Button type="submit" disabled={!isEnabled} variant="primary">Search</Button>
-                        </Col>
-                    </Form.Group>
-                    <Col></Col>
-                </Row>
-            </Form>
+            <Row>
+                <Col></Col>
+                <Col>
+                    <input
+                        onChange={handleChange}
+                        value={search}
+                        type="text"
+                        placeholder="Enter Keyword To Search on Twitter" />
+                    <Button
+                        style={{ marginTop: "10px" }}
+                        disabled={!isEnabled}
+                        onClick={handleSubmit}
+                        variant="primary">Search
+                        </Button>
+                </Col>
+                <Col></Col>
+            </Row>
             {renderCards}
-        </main>
+        </main >
     )
 }
 

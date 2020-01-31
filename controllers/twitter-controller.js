@@ -1,6 +1,7 @@
 let axios = require('axios');
 var qs = require('qs');
-var moment = require('moment')
+var moment = require('moment');
+require('dotenv').config();
 
 const data = qs.stringify({
     grant_type: 'client_credentials'
@@ -45,10 +46,10 @@ let twitterSearchApi = (q, res) => {
             let returnedTweets = []
             response.data.statuses.forEach(tweet => {
                 returnedTweet = {
-                    created_at: moment(tweet['created_at'], 'ddd MMM DD HH:mm:ss Z YYYY').format('MMM DD YYYY HH:MM'),
+                    date: moment(tweet['created_at'], 'ddd MMM DD HH:mm:ss Z YYYY').format('MMM DD YYYY HH:MM'),
                     id: tweet['id'],
                     text: tweet['text'].substring(0, tweet['text'].lastIndexOf(" ")),
-                    image: tweet['user']['profile_image_url'],
+                    src: tweet['user']['profile_image_url'],
                     name: tweet['user']['name'],
                     screen_name: tweet['user']['screen_name'],
                     retweet_count: tweet["retweet_count"],
@@ -71,8 +72,8 @@ let getBearerByCredentials = () => {
         baseURL: "https://api.twitter.com/",
         data,
         auth: {
-            username: '1d0jI2olncfyjriTNBrch0cft',
-            password: 'rNzLT17cGqO4yBhwissEiRWh4umdUMz8hSDY7ghV9O0Hm7LUbs'
+            username: process.env.API_TWITTER_USERNAME,
+            password: process.env.API_TWITTER_PASSWORD
         },
     })
         .then(response => {

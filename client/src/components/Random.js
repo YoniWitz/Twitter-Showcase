@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import MyCard from './MyCard'
 import axios from 'axios'
-import { Button, Form, Row, Col } from 'react-bootstrap'
+import { Button, Row, Col } from 'react-bootstrap'
 
 function User() {
     const [cards, setCards] = useState([])
@@ -31,16 +31,14 @@ function User() {
 
     return (
         <main>
-            <Form onSubmit={handleSubmit} style={{marginTop:"10px"}}>
-                <Row>
-                    <Col></Col>
-                    <Col>
-                        <Button variant="info" onClick={handleSubmit}>Generate Tweets from my Top 5 People</Button>
-                    </Col>
-                    <Col></Col>
-                </Row>
-            </Form>           
-            {renderCards}           
+            <Row>
+                <Col></Col>
+                <Col>
+                    <Button variant="info" onClick={handleSubmit}>Generate Tweets from my Top 5 People</Button>
+                </Col>
+                <Col></Col>
+            </Row>
+            {renderCards}
         </main>
     )
 }

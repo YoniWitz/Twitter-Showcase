@@ -3,13 +3,7 @@ import Media from 'react-bootstrap/Media'
 import Image from 'react-bootstrap/Image'
 
 function MyCard(props) {
-  let name = props.data.name;
-  let screen_name = props.data.screen_name;
-  let text = props.data.text;
-  let date = props.data.created_at;
-  let src = props.data.image;
-  let retweet_count = props.data.retweet_count;
-  let favorite_count = props.data.favorite_count;
+  let { name, screen_name, text, date, src, retweet_count, favorite_count } = props.data;
 
   let mediaStyle = {
     backgroundColor: "white",
