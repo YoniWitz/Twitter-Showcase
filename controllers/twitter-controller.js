@@ -1,20 +1,14 @@
-let axios = require('axios');
-var qs = require('qs');
-var moment = require('moment');
+const axios = require('axios');
+const moment = require('moment');
+const bearerTokenService = require('./bearer-token-controller');
+
 require('dotenv').config();
-
-const data = qs.stringify({
-    grant_type: 'client_credentials'
-})
-
-let bearer;
 
 const instance = axios.create({
     baseURL: "https://api.twitter.com/"
 })
 
 let getTweetsBySearch = (req, res) => {
-    console.log('search for tweets')
     let q = req.params.search;
     twitterSearchApi(q, res);
 }
@@ -22,13 +16,12 @@ let getTweetsBySearch = (req, res) => {
 let getTweetsByRandomSearch = (req, res) => {
     let people = ['Elon Musk', 'Neil Armstrong', 'Elizabeth Warren', 'Tom Hanks', 'Drake']
     let q = people[Math.floor(Math.random() * people.length)];
-    console.log(q);
     twitterSearchApi(q, res);
 }
 
-let twitterSearchApi = (q, res) => {
+let twitterSearchApi =  async (q, res) => {
     let url = '1.1/search/tweets.json';
-
+   
     instance.get(url,
         {
             params: {
@@ -39,7 +32,7 @@ let twitterSearchApi = (q, res) => {
             headers: {
                 'Content_Type': "application/json",
                 'Accept': "application/json",
-                'Authorization': `Bearer ${bearer}`
+                'Authorization': `Bearer ${await bearerTokenService.getBearerByCredentials()}`
             }
         })
         .then(response => {
@@ -64,27 +57,7 @@ let twitterSearchApi = (q, res) => {
         });
 }
 
-let getBearerByCredentials = () => {
-    let url = 'oauth2/token';
-    axios.request({
-        url: url,
-        method: "post",
-        baseURL: "https://api.twitter.com/",
-        data,
-        auth: {
-            username: process.env.API_TWITTER_USERNAME,
-            password: process.env.API_TWITTER_PASSWORD
-        },
-    })
-        .then(response => {
-            bearer = response.data['access_token'];
-        })
-        .catch(error =>
-            console.log(error));
-}
-
 module.exports = {
-    getBearerByCredentials: getBearerByCredentials,
     getTweetsBySearch: getTweetsBySearch,
     getTweetsByRandomSearch: getTweetsByRandomSearch
 }
