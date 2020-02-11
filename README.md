@@ -18,9 +18,10 @@ My ultimate goal is to land a job that incorporates my skills and utilizes my ab
 ##  Installation Instructions
 
 1. Download Repository
-2. From root folder, 'cd client', then 'npm install'
-3. From root folder, 'npm install' then 'npm run start:dev'
-4. in browser, redirect to http://localhost:3001/
+2. Rename '.env example' file to '.env' and use credentials as instructed in file.
+3. From root folder, 'cd client', then 'npm install'
+4. From root folder, 'npm install' then 'npm run start:dev'
+5. in browser, redirect to http://localhost:3001/
 
 ## Author
 
