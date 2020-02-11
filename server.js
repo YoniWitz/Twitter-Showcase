@@ -14,10 +14,7 @@ app.get('/api/tweets/random', twitterController.getTweetsByRandomSearch)
 //set static folder
 app.use(express.static(__dirname + "/client/build"));
 
-app.get(/.*/, function (req, res) {
-    res.sendFile(path.resolve(__dirname + '/client', 'build', 'index.html'));
-});
+app.get(/.*/,  (req, res) => res.sendFile(path.resolve(__dirname + '/client', 'build', 'index.html')));
 
-app.listen(port, () =>{
-    console.log(`up and running on port ${port}`);
-});
+
+app.listen(port, () => console.log(`up and running on port ${port}`));

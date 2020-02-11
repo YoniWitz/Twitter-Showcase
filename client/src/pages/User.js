@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Row, Col } from 'react-bootstrap'
-import MyCard from './MyCard'
+import TwitterCard from '../components/TwitterCard'
 import axios from 'axios'
 
 
@@ -10,40 +10,35 @@ function User() {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        console.log(search);
-        axios.get(`/api/tweets/search/${search}`)
-            .then(response =>
-                setCards(response.data)
-            )
-            .catch(error =>
-                console.log(error.message)
-            )
+        axios
+            .get(`/api/tweets/search/${search}`)
+            .then(response => setCards(response.data))
+            .catch(error => console.error(error.message));
     }
 
     function handleChange(event) {
-        let { value } = event.target;
-        setSearch(value);
-        console.log(search);
+        setSearch(event.target.value);
     }
 
-    let renderCards = cards.map(data => <MyCard key={data.id} data={data} />);
-    let isEnabled = search.length
+    let renderCards = cards.map(data => <TwitterCard key={data.id} data={data} />);
+    let isDisabled = !search.length;
+
     return (
         <main>
             <Row>
                 <Col></Col>
                 <Col>
-                    <input
+                    <input                      
                         onChange={handleChange}
                         value={search}
                         type="text"
-                        placeholder="Enter Keyword To Search on Twitter" />
+                        placeholder="Enter Keyword To Search" />
                     <Button
-                        style={{ marginTop: "10px" }}
-                        disabled={!isEnabled}
+                        style={{ marginTop: "10px", text: "center" }}
+                        disabled={isDisabled}
                         onClick={handleSubmit}
                         variant="primary">Search
-                        </Button>
+                    </Button>
                 </Col>
                 <Col></Col>
             </Row>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 
-function MyNavbar() {
+function TwitterNavbar() {
     return (
         <main>
             <Navbar bg="primary" variant="dark">
@@ -17,4 +17,4 @@ function MyNavbar() {
     )
 }
 
-export default MyNavbar
+export default TwitterNavbar

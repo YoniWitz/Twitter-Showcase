@@ -8,10 +8,7 @@ const instance = axios.create({
     baseURL: "https://api.twitter.com/"
 })
 
-let getTweetsBySearch = (req, res) => {
-    let q = req.params.search;
-    twitterSearchApi(q, res);
-}
+let getTweetsBySearch = (req, res) =>  twitterSearchApi(req.params.search, res);
 
 let getTweetsByRandomSearch = (req, res) => {
     let people = ['Elon Musk', 'Neil Armstrong', 'Elizabeth Warren', 'Tom Hanks', 'Drake']
@@ -19,42 +16,39 @@ let getTweetsByRandomSearch = (req, res) => {
     twitterSearchApi(q, res);
 }
 
-let twitterSearchApi =  async (q, res) => {
+let twitterSearchApi = async (q, res) => {
     let url = '1.1/search/tweets.json';
-   
-    instance.get(url,
-        {
-            params: {
-                'q': q,
-                'result_type': 'popular',
-                'count': 5
-            },
-            headers: {
-                'Content_Type': "application/json",
-                'Accept': "application/json",
-                'Authorization': `Bearer ${await bearerTokenService.getBearerByCredentials()}`
-            }
-        })
-        .then(response => {
-            let returnedTweets = []
-            response.data.statuses.forEach(tweet => {
-                returnedTweet = {
-                    date: moment(tweet['created_at'], 'ddd MMM DD HH:mm:ss Z YYYY').format('MMM DD YYYY HH:MM'),
-                    id: tweet['id'],
-                    text: tweet['text'].substring(0, tweet['text'].lastIndexOf(" ")),
-                    src: tweet['user']['profile_image_url'],
-                    name: tweet['user']['name'],
-                    screen_name: tweet['user']['screen_name'],
-                    retweet_count: tweet["retweet_count"],
-                    favorite_count: tweet["favorite_count"]
-                }
-                returnedTweets.push(returnedTweet)
-            })
-            res.send(returnedTweets)
-        })
-        .catch(error => {
-            res.send(error.message)
+
+    instance
+    .get(url,
+    {
+        params: {
+               'q': q,
+            'result_type': 'popular',
+            'count': 5
+        },
+        headers: {
+            'Content_Type': "application/json",
+            'Accept': "application/json",
+            'Authorization': `Bearer ${await bearerTokenService.getBearerByCredentials()}`
+        }
+    })
+    .then(response => {
+        let returnedTweets =  response.data.statuses.map(tweet => {
+            return {
+                date: moment(tweet['created_at'], 'ddd MMM DD HH:mm:ss Z YYYY').format('MMM DD YYYY HH:MM'),
+                id: tweet['id'],
+                text: tweet['text'].substring(0, tweet['text'].lastIndexOf(" ")),
+                src: tweet['user']['profile_image_url'],
+                name: tweet['user']['name'],
+                screen_name: tweet['user']['screen_name'],
+                retweet_count: tweet["retweet_count"],
+                favorite_count: tweet["favorite_count"]
+            };
         });
+       res.send(returnedTweets)
+    })
+    .catch(error => res.send(error.message));
 }
 
 module.exports = {
