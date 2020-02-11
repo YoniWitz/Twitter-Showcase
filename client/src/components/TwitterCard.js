@@ -2,7 +2,7 @@ import React from 'react'
 import Media from 'react-bootstrap/Media'
 import Image from 'react-bootstrap/Image'
 
-function MyCard(props) {
+function TwitterCard(props) {
   let { name, screen_name, text, date, src, retweet_count, favorite_count } = props.data;
 
   let mediaStyle = {
@@ -36,4 +36,4 @@ function MyCard(props) {
   )
 }
 
-export default MyCard
+export default TwitterCard

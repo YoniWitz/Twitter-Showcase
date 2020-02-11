@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import MyNavbar from './components/MyNavbar';
-import Home from './components/Home';
-import User from './components/User';
-import Random from './components/Random';
+import TwitterNavbar from './components/TwitterNavbar';
+import Home from './pages/Home';
+import User from './pages/User';
+import Random from './pages/Random';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Container } from 'react-bootstrap';
 
@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <MyNavbar />
+        <TwitterNavbar />
         <Container>
           <Switch>
             <Route path="/" exact component={Home} />
