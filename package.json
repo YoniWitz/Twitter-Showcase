@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "serve": "nodemon server",
-    "start:dev": "concurrently \"npm run serve\" \"cd client && cra-build-watch\"",
+    "start:dev": "concurrently \"npm run serve\" \"cd client && npm run watch\"",
     "start": "node server.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
@@ -35,7 +35,6 @@
     "reactstrap": "^8.4.0"
   },
   "devDependencies": {
-    "cra-build-watch": "^3.1.0",
     "nodemon": "^2.0.2"
   }
 }

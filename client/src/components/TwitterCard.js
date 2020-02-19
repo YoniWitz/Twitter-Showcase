@@ -6,7 +6,7 @@ function TwitterCard(props) {
   let { name, screen_name, text, date, src, retweet_count, favorite_count } = props.data;
 
   let mediaStyle = {
-    backgroundColor: "white",
+    backgroundColor: "yellow",
     border: ".51px solid blue",
     marginTop: '5px',
     fontFamily: "sans serif"
