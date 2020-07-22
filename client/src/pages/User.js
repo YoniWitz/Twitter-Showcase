@@ -20,7 +20,7 @@ function User() {
         setSearch(event.target.value);
     }
 
-    let renderCards = cards.map(data => <TwitterCard key={data.id} data={data} />);
+    let renderCards = cards.map? cards.map(data => <TwitterCard key={data.id} data={data} />): null;
     let isDisabled = !search.length;
 
     return (

@@ -19,7 +19,7 @@ function User() {
             .catch(error => console.error(error.message));
     }
 
-    let renderCards = cards.map(data => <TwitterCard key={data.id} data={data} />);
+    let renderCards = cards.map ? cards.map(data => <TwitterCard key={data.id} data={data} />) : null;
 
     return (
         <main>
