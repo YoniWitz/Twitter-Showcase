@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/YoniWitz/Twitter-Showcase-React#readme",
   "dependencies": {
-    "axios": "^1.13.5",
+    "axios": "^1.15.0",
     "body-parser": "^1.20.4",
     "concurrently": "^5.0.2",
     "cors": "^2.8.5",
